@@ -1,11 +1,12 @@
 {
-  "name": "todos_part1",
+  "name": "todos_part2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --mode=development"
+    "postinstall": "webpack",
+    "webpack": "webpack --watch"
   },
   "keywords": [],
   "author": "",
