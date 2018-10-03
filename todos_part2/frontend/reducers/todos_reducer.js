@@ -1,4 +1,5 @@
 import { RECEIVE_TODOS, RECEIVE_TODO } from '../actions/todo_actions';
+import { merge } from 'lodash';
 
 const initialState = {
   1: {
@@ -16,12 +17,16 @@ const initialState = {
 };
 
 const todosReducer = (state = initialState, action) => {
+  Object.freeze(state);
   let newState = Object.assign({},state);
 
   switch(action.type) {
     case RECEIVE_TODOS:
       for (var i = 0; i < action.todos.length; i++) {
-          newState = Object.assign(newState, state, {[action.todos[i].id]: action.todos[i]});
+          // newState = Object.assign(newState, state, {[action.todos[i].id]: action.todos[i]});
+          // newState = merge(newState, state, {[action.todos[i].id]: action.todos[i]});
+          newState[action.todos[i].id] = action.todos[i];
+
       }
       return newState;
       // return action.todos.reduce((newState, el) => newState = Object.assign(newState, {[el.id]: el}));

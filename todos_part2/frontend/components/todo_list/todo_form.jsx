@@ -1,5 +1,5 @@
 import React from 'react';
-import {receiveTodo} from '../../actions/todo_actions';
+import {createTodo} from '../../actions/todo_actions';
 
 class TodoForm extends React.Component {
   constructor(props) {
@@ -33,9 +33,9 @@ class TodoForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const todo = Object.assign({}, this.state, {id: this.uniqueId()});
-    this.props.receiveTodo(todo);
-
-    this.setState({ title: '', body: ''});
+    this.props.createTodo({todo}).then(
+      () => this.setState({ title: '', body: ''})
+    );
   }
 
   uniqueId() {
